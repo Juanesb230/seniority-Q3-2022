@@ -45,10 +45,10 @@ const SoccerTarget: FC<SoccerTargetProps> = ({ id, name, attack, defense, skills
           <StadisticLabel label="Skills" value={skills} />
         </div>
         <div className="soccer-target__buttons">
-          <Button id="edit" onClick={onEdit}>
+          <Button id="edit" variant="secondary" onClick={onEdit}>
             <img src={EditIcon} alt="edit-icon" />
           </Button>
-          <Button id="delete" onClick={() => onDelete(id)}>
+          <Button id="delete" variant="secondary" onClick={() => onDelete(id)}>
             <img src={DeletIcon} alt="delete-icon" />
           </Button>
         </div>

@@ -11,6 +11,10 @@
   font-size: large;
   font-weight: bold;
 
+  &--secondary {
+    background-color: transparent;
+  }
+
   &:hover {
     filter: opacity(0.8);
   }

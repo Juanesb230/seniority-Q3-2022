@@ -1,12 +1,27 @@
 .player-form {
 
+  &--show {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 50;
+  }
+  
+
   &__container {
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     background-color: white;
     border-radius: 16px;
     z-index: 100;
     width: 60%;
-    margin: 20% 20%;
+    height: 430px;
     padding: 16px;
   }
 
@@ -25,7 +40,7 @@
     }
   }
 
-  &__inputs{
+  &__inputs {
     display: flex;
     gap: 18px;
     padding-bottom: 16px;
