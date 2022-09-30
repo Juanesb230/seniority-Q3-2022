@@ -8,6 +8,7 @@ export interface InputProps {
   type?: string
   name?: string
   showError?: boolean
+  showLabel?: boolean
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void
 }
 
@@ -18,6 +19,7 @@ const Input: FC<InputProps> = ({
   name = 'input',
   width,
   onChange = () => {},
+  showLabel = true,
   showError = true
 }) => {
   const [value, setValue] = useState(initialValue)
@@ -34,7 +36,7 @@ const Input: FC<InputProps> = ({
 
   return (
     <div style={{ width }}>
-      <label style={{ fontSize: '12px', fontWeight: 'bold' }}>{placeholder}</label>
+      {showLabel && <label style={{ fontSize: '12px', fontWeight: 'bold' }}>{placeholder}</label>}
       <input
         type={type}
         placeholder={placeholder}
