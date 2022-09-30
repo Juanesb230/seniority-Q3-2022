@@ -12,7 +12,7 @@ const TargetList = () => {
   return (
     <>
       <div className="target-list__search">
-        <Input placeholder="Buscar por apellido" onChange={onSearch} />
+        <Input showError={false} placeholder="Buscar por apellido" onChange={onSearch} />
         <Button width="150px" onClick={onClose}>
           Agregar
         </Button>

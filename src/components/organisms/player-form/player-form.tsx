@@ -46,6 +46,7 @@ const PlayerForm = () => {
                     initialValue={player.image}
                     name="image"
                     onChange={onChange}
+                    width="100%"
                   />
                 </div>
                 <div>

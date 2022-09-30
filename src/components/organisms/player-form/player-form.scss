@@ -21,8 +21,12 @@
     border-radius: 16px;
     z-index: 100;
     width: 60%;
-    height: 430px;
+    max-width: 800px;
+    height: 55%;
     padding: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 
   &__header {

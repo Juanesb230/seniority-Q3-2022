@@ -7,7 +7,8 @@ export interface InputProps {
   width?: string
   type?: string
   name?: string
-  onChange?(value: any): void
+  showError?: boolean
+  onChange?(e: React.ChangeEvent<HTMLInputElement>): void
 }
 
 const Input: FC<InputProps> = ({
@@ -16,7 +17,8 @@ const Input: FC<InputProps> = ({
   placeholder,
   name = 'input',
   width,
-  onChange = () => {}
+  onChange = () => {},
+  showError = true
 }) => {
   const [value, setValue] = useState(initialValue)
 
@@ -32,6 +34,7 @@ const Input: FC<InputProps> = ({
 
   return (
     <div style={{ width }}>
+      <label style={{ fontSize: '12px', fontWeight: 'bold' }}>{placeholder}</label>
       <input
         type={type}
         placeholder={placeholder}
@@ -40,6 +43,9 @@ const Input: FC<InputProps> = ({
         className="input"
         onChange={handleOnChange}
       ></input>
+      {!value && showError && (
+        <p style={{ fontSize: '10px', color: 'red' }}>El campo {placeholder} es obligatorio</p>
+      )}
     </div>
   )
 }
