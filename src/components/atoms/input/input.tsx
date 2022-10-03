@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import './input.scss'
+import useInput from './use-input'
 
 export interface InputProps {
   initialValue?: string
@@ -22,17 +23,7 @@ const Input: FC<InputProps> = ({
   showLabel = true,
   showError = true
 }) => {
-  const [value, setValue] = useState(initialValue)
-
-  useEffect(() => {
-    setValue(initialValue)
-  }, [initialValue])
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value
-    setValue(inputValue)
-    onChange(event)
-  }
+  const { value, handleOnChange } = useInput({ initialValue, onChange })
 
   return (
     <div style={{ width }}>
