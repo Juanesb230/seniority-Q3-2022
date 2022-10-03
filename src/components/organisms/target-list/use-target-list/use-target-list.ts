@@ -1,9 +1,15 @@
 import { useCallback, useContext, useEffect } from 'react'
 
 import AppContext from '../../../../context'
-import { PlayerService } from '../../../../services/players'
+import { Player, PlayerService } from '../../../../services/players'
 
-const useTargetList = () => {
+export interface UseTargetListReturn {
+  players: Player[]
+  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onClose: () => void
+}
+
+const useTargetList = (): UseTargetListReturn => {
   const { playerReducer, modal } = useContext(AppContext)
   const { setShowModal } = modal
   const { playerState, playerDispatch } = playerReducer

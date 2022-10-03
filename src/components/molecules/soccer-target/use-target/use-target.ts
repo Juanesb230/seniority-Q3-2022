@@ -2,15 +2,20 @@ import { useContext } from 'react'
 import AppContext from '../../../../context'
 import { PlayerService } from '../../../../services/players'
 
-const useTarget = (id: number) => {
+export interface UseTargetReturn {
+  onEdit(): void
+  onDelete(): Promise<void>
+}
+
+const useTarget = (id: number): UseTargetReturn => {
   const { playerReducer, modal } = useContext(AppContext)
   const { playerDispatch } = playerReducer
   const { setShowModal } = modal
 
-  const onDelete = async (playerId: number) => {
+  const onDelete = async () => {
     try {
-      await PlayerService.deletePlayer(playerId)
-      playerDispatch({ type: 'deletePlayer', payload: playerId })
+      await PlayerService.deletePlayer(id)
+      playerDispatch({ type: 'deletePlayer', payload: id })
     } catch (e) {}
   }
 

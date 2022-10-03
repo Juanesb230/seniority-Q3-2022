@@ -1,57 +1,12 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { playersMocks, playerMock } from './mocks/playerMocks'
 import userEvent from '@testing-library/user-event'
+import axiosMock from './mocks/axiosMock'
 import App from './app'
-import axios from 'axios'
-
-jest.mock('axios')
-const axiosMock = axios as jest.Mocked<typeof axios>
 
 describe('App component', () => {
   beforeEach(() => {
-    axiosMock.get.mockResolvedValueOnce({
-      data: [
-        {
-          id: 37,
-          firstName: 'Leo',
-          lastName: '1',
-          image: 'https://cdn.forbes.co/2020/09/Lionel-Messi-EFE-1280X720.jpg',
-          attack: 14,
-          defense: 87,
-          skills: 39,
-          idAuthor: 31,
-          idPosition: 0
-        },
-        {
-          id: 56,
-          firstName: 'Leo',
-          lastName: '2',
-          image: 'https://cdn.forbes.co/2020/09/Lionel-Messi-EFE-1280X720.jpg',
-          attack: 96,
-          defense: 87,
-          skills: 99,
-          idAuthor: 31,
-          idPosition: 0
-        },
-        {
-          id: 242,
-          firstName: 'Leo',
-          lastName: '3',
-          image: 'https://cdn.forbes.co/2020/09/Lionel-Messi-EFE-1280X720.jpg',
-          attack: 25,
-          defense: 75,
-          skills: 21,
-          idAuthor: 31,
-          idPosition: 0
-        }
-      ]
-    })
-  })
-
-  it('Should render a title', () => {
-    render(<App />)
-
-    const title = screen.getByText('MI EQUIPO')
-    expect(title).toBeInTheDocument()
+    axiosMock.get.mockResolvedValueOnce(playersMocks)
   })
 
   it('Should render list of players', async () => {
@@ -106,7 +61,7 @@ describe('App component', () => {
   })
 
   it('Should create player', async () => {
-    axiosMock.post.mockResolvedValueOnce({ data: { id: 4 } })
+    axiosMock.post.mockResolvedValueOnce(playerMock)
     render(<App />)
 
     const title = screen.getByText('MI EQUIPO')
@@ -118,7 +73,7 @@ describe('App component', () => {
       expect(screen.getByText('LEO 3')).toBeInTheDocument()
     })
 
-    fireEvent.click(screen.getByText('Agregar'))
+    await fireEvent.click(screen.getByText('Agregar'))
 
     await waitFor(() => expect(screen.getByText('Jugador')).toBeInTheDocument())
 
@@ -138,7 +93,7 @@ describe('App component', () => {
   })
 
   it('Should edit player', async () => {
-    axiosMock.patch.mockResolvedValueOnce({ data: { id: 4 } })
+    axiosMock.patch.mockResolvedValueOnce(playerMock)
     render(<App />)
 
     const title = screen.getByText('MI EQUIPO')
@@ -158,7 +113,7 @@ describe('App component', () => {
 
     userEvent.type(screen.getByPlaceholderText('Apellido'), ' EDITADO')
 
-    fireEvent.click(screen.getByText('Editar'))
+    await fireEvent.click(screen.getByText('Editar'))
 
     await waitFor(() => {
       expect(screen.getByText('LEO 3 EDITADO')).toBeInTheDocument()

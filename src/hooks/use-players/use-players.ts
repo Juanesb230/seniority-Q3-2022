@@ -1,7 +1,7 @@
 import { useReducer } from 'react'
 import { Player } from '../../services/players'
 
-interface PlayerState {
+export interface PlayerState {
   players: Player[]
   serverData: Player[]
   player: Player
@@ -113,8 +113,8 @@ const playersReducer = (state: PlayerState, action: PlayerReducerAction): Player
   }
 }
 
-const usePlayers = () => {
-  const [playerState, playerDispatch] = useReducer(playersReducer, INITIAL_STATE)
+const usePlayers = (initialState?: PlayerState) => {
+  const [playerState, playerDispatch] = useReducer(playersReducer, initialState ?? INITIAL_STATE)
   return { playerState, playerDispatch }
 }
 

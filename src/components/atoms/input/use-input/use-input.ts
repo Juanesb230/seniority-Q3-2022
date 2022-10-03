@@ -5,7 +5,12 @@ export interface UseInputArgs {
   onChange(e: React.ChangeEvent<HTMLInputElement>): void
 }
 
-const useInput = ({ initialValue, onChange }: UseInputArgs) => {
+export interface UseInputReturn {
+  value: string
+  handleOnChange(event: React.ChangeEvent<HTMLInputElement>): void
+}
+
+const useInput = ({ initialValue, onChange }: UseInputArgs): UseInputReturn => {
   const [value, setValue] = useState(initialValue)
 
   useEffect(() => {

@@ -1,14 +1,20 @@
-import { useContext, useLayoutEffect } from 'react'
+import { useContext } from 'react'
 import AppContext from '../../../../context'
-import { PlayerService } from '../../../../services/players'
+import { Player, PlayerService } from '../../../../services/players'
 
-const usePlayerForm = () => {
+export interface UsePlayerFormReturn {
+  player: Player
+  showModal: boolean
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  callServer: (method: 'createPlayer' | 'updatePlayer') => void
+  onClose: () => void
+}
+
+const usePlayerForm = (): UsePlayerFormReturn => {
   const { modal, playerReducer } = useContext(AppContext)
   const { showModal, setShowModal } = modal
   const { playerState, playerDispatch } = playerReducer
   const { player } = playerState
-
-  useLayoutEffect(() => {}, [])
 
   const onClose = () => {
     playerDispatch({ type: 'clearPlayer' })

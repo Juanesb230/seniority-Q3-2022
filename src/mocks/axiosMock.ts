@@ -1,6 +1,4 @@
 import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
+const axiosMock = axios as jest.Mocked<typeof axios>
 
-const axiosMock = new MockAdapter(axios)
-
-export { axiosMock }
+export default axiosMock

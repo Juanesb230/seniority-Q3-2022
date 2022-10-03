@@ -48,7 +48,7 @@ const SoccerTarget: FC<SoccerTargetProps> = ({ id, name, attack, defense, skills
           <Button id="edit" variant="secondary" onClick={onEdit}>
             <img src={EditIcon} alt="edit-icon" />
           </Button>
-          <Button id="delete" variant="secondary" onClick={() => onDelete(id)}>
+          <Button id="delete" variant="secondary" onClick={onDelete}>
             <img src={DeletIcon} alt="delete-icon" />
           </Button>
         </div>
