@@ -1,0 +1,26 @@
+.button {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  color:white;
+  padding: 14px;
+  border-radius: 4px;
+  font-size: large;
+  font-weight: bold;
+
+  &--secondary {
+    background-color: transparent;
+  }
+
+  &:hover {
+    filter: opacity(0.8);
+  }
+
+  &:disabled {
+    background-color: gainsboro;
+    cursor: not-allowed;
+  }
+}

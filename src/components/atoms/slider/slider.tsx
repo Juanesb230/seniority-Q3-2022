@@ -1,18 +1,19 @@
 import { FC } from 'react'
 import './slider.scss'
-import useSlider from './use-slider/use-slider'
+import useSlider from './use-slider'
 
 export interface SliderProps {
   label?: string
   value?: number
   defaultValue?: number
-  onChange?: (value: number) => void
+  name?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const MAX_RANGE = 100
 const MIN_RANGE = 0
 
-const Slider: FC<SliderProps> = ({ label, value, defaultValue, onChange }) => {
+const Slider: FC<SliderProps> = ({ label, value, defaultValue, onChange, name }) => {
   const { currentValue, handleCurrentValue } = useSlider({
     defaultValue,
     onChange,
@@ -32,11 +33,11 @@ const Slider: FC<SliderProps> = ({ label, value, defaultValue, onChange }) => {
             className="slider__input"
             type="range"
             id={label}
-            name={label}
+            name={name}
             value={currentValue}
             min={MIN_RANGE}
             max={MAX_RANGE}
-            onChange={(e) => handleCurrentValue(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCurrentValue(e)}
           />
           <span className="slider__value">{currentValue}</span>
         </div>

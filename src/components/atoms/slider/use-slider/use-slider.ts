@@ -3,22 +3,25 @@ import { useEffect, useState } from 'react'
 export interface UseSliderArgs {
   value?: number
   defaultValue?: number
-  onChange?: (value: number) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const DEFAULT_VALUE = 55
+export interface UseSliderReturn {
+  currentValue: number
+  handleCurrentValue: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-function useSlider(args?: UseSliderArgs) {
-  const [currentValue, setCurrentValue] = useState(args?.defaultValue ?? DEFAULT_VALUE)
+function useSlider(args?: UseSliderArgs): UseSliderReturn {
+  const [currentValue, setCurrentValue] = useState(args?.defaultValue ?? 55)
 
   useEffect(() => {
-    setCurrentValue(args?.value || args?.defaultValue || DEFAULT_VALUE)
+    setCurrentValue((state) => (args?.value ? args.value : state))
   }, [args?.value])
 
-  const handleCurrentValue = (valueTarget: string) => {
-    const valueSlider = Number(valueTarget)
+  const handleCurrentValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const valueSlider = Number(e.target.value)
 
-    if (args?.onChange) args?.onChange(valueSlider)
+    if (args?.onChange) args?.onChange(e)
 
     setCurrentValue(valueSlider)
   }
