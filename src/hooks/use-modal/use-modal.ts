@@ -7,4 +7,4 @@ const useModal = () => {
 }
 
 export default useModal
-export type ModalHookType = ReturnType<typeof useModal>
+export type ModalHook = ReturnType<typeof useModal>

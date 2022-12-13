@@ -1,6 +1,6 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
-import AppContext from '../../../../context'
+import { useAppContext } from '../../../../context'
 import { Player, PlayerService } from '../../../../services/players'
 
 export interface UseTargetListReturn {
@@ -10,7 +10,7 @@ export interface UseTargetListReturn {
 }
 
 const useTargetList = (): UseTargetListReturn => {
-  const { playerReducer, modal } = useContext(AppContext)
+  const { playerReducer, modal } = useAppContext()
   const { setShowModal } = modal
   const { playerState, playerDispatch } = playerReducer
   const { players } = playerState

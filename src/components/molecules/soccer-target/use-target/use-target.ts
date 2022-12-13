@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import AppContext from '../../../../context'
+import { useAppContext } from '../../../../context'
 import { PlayerService } from '../../../../services/players'
 
 export interface UseTargetReturn {
@@ -8,7 +7,7 @@ export interface UseTargetReturn {
 }
 
 const useTarget = (id: number): UseTargetReturn => {
-  const { playerReducer, modal } = useContext(AppContext)
+  const { playerReducer, modal } = useAppContext()
   const { playerDispatch } = playerReducer
   const { setShowModal } = modal
 

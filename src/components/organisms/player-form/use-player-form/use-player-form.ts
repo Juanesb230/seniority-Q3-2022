@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import AppContext from '../../../../context'
+import { useAppContext } from '../../../../context'
 import { Player, PlayerService } from '../../../../services/players'
 
 export interface UsePlayerFormReturn {
@@ -11,7 +10,7 @@ export interface UsePlayerFormReturn {
 }
 
 const usePlayerForm = (): UsePlayerFormReturn => {
-  const { modal, playerReducer } = useContext(AppContext)
+  const { modal, playerReducer } = useAppContext()
   const { showModal, setShowModal } = modal
   const { playerState, playerDispatch } = playerReducer
   const { player } = playerState

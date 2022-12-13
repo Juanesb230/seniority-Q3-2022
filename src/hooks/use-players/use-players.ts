@@ -119,4 +119,4 @@ const usePlayers = (initialState?: PlayerState) => {
 }
 
 export default usePlayers
-export type PlayerHookType = ReturnType<typeof usePlayers>
+export type PlayerHook = ReturnType<typeof usePlayers>
