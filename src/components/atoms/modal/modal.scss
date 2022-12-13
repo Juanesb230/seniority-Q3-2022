@@ -1,0 +1,15 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top:200px;
+  background-color: rgba(0,0,0,0.5);
+
+  &__body {
+    background-color: white;
+    width: 80%;
+  }
+}
+
